@@ -8,10 +8,7 @@ from pydantic import BaseModel, Field
 from typing import List
 import uvicorn
 
-
-# ========================
 # DATA MODELS
-# ========================
 
 class Fuels(BaseModel):
     """Fuel costs and wind percentage"""
@@ -45,10 +42,7 @@ class PowerPlantOutput(BaseModel):
     name: str
     p: float
 
-
-# ========================
 # CALCULATION ALGORITHM
-# ========================
 
 def calculate_cost_per_mwh(plant: PowerPlant, fuels: Fuels) -> float:
     """
@@ -89,7 +83,6 @@ def calculate_actual_pmax(plant: PowerPlant, fuels: Fuels) -> float:
 
 def calculate_production_plan(load: float, fuels: Fuels, powerplants: List[PowerPlant]) -> List[PowerPlantOutput]:
     """
-    GREEDY MERIT ORDER ALGORITHM
     
     Steps:
     1. Calculate cost per MWh for each plant
@@ -180,13 +173,12 @@ def calculate_production_plan(load: float, fuels: Fuels, powerplants: List[Power
     return result
 
 
-# ========================
 # FASTAPI APPLICATION
-# ========================
+
 
 app = FastAPI(
     title="Power Plant Production Planner",
-    description="Calculate optimal power production plan using merit order dispatch",
+    description="Calculate optimal power production plan",
     version="1.0.0"
 )
 
